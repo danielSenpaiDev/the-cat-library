@@ -1,0 +1,5 @@
+<mapper namespace="org.api.catlibrary.data">
+	<insert id="save" parameterType="Book" useGeneratedKeys="true" keyProperty="book.id" keyColumn="id_book">
+		insert into book values (#{author},#{description},#{price},	#{title})
+	</insert>
+</mapper>
