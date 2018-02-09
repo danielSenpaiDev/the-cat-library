@@ -35,7 +35,10 @@ public class LibraryService {
 	}
 	
 	public Book getBook(String id) {
-		bookRepo.findOne((long) 2);
-		return null;
+		BookDocument bookDoc = bookRepo.findOne(id);
+		ModelMapper modelMapper=new ModelMapper();
+		Book book = new Book();
+		modelMapper.map(bookDoc, book);
+		return book;
 	}
 }

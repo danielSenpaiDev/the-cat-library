@@ -8,6 +8,7 @@ import org.api.catlibrary.services.LibraryService;
 import org.api.catlibrary.util.logging.LogInfo;
 import org.api.catlibrary.util.logging.LogTracking;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -38,7 +39,12 @@ public class LibraryController {
 	}
 	
 	@RequestMapping(value="/storeBook", method=RequestMethod.POST)
-	public boolean saveBook(@RequestBody Book book) {
+	public boolean saveBook(@RequestBody Book book) throws Exception {
 		return libraryService.storeBook(book);
+	}
+	
+	@RequestMapping(value="/book/{id}", method=RequestMethod.GET)
+	public Book getBook(@PathVariable("id") String id) {
+		return libraryService.getBook(id);
 	}
 }
