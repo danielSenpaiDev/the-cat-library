@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.api.catlibrary.domain.Book;
 import org.api.catlibrary.domain.BookFilter;
+import org.api.catlibrary.domain.UserVote;
 import org.api.catlibrary.services.LibraryService;
 import org.api.catlibrary.util.logging.LogInfo;
 import org.api.catlibrary.util.logging.LogTracking;
@@ -46,5 +47,11 @@ public class LibraryController {
 	@RequestMapping(value="/book/{id}", method=RequestMethod.GET)
 	public Book getBook(@PathVariable("id") String id) {
 		return libraryService.getBook(id);
+	}
+	
+	@RequestMapping(value="/voteBook", method=RequestMethod.POST)
+	public boolean voteBook(@RequestBody UserVote vote) {
+		boolean result = libraryService.qualify(vote.getBookId(), vote.isLikeIt(), vote.getUsername());
+		return result;
 	}
 }

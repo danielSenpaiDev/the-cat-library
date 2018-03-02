@@ -18,8 +18,6 @@ public class BookRepositoryImpl implements BookRepositoryCustom {
 	
 	@Override
 	public List<BookDocument> findAllBooks(BookFilter query) {
-//		Query query = new Query();
-//		query.addCriteria(Criteria.where("price").gt(25000));
 		Pageable pgReq = new PageRequest(query.getPage(), query.getPageCount());
 		
 		Query q = new Query();

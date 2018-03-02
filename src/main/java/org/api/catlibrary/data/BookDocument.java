@@ -1,5 +1,7 @@
 package org.api.catlibrary.data;
 
+import java.util.HashMap;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -11,6 +13,14 @@ public class BookDocument {
 	private String description;
 	private String author;
 	private int price;
+	private HashMap<String, Boolean> votes;
+	
+	public HashMap<String, Boolean> getVotes() {
+		return votes;
+	}
+	public void setVotes(HashMap<String, Boolean> votes) {
+		this.votes = votes;
+	}
 	public String getTitle() {
 		return title;
 	}

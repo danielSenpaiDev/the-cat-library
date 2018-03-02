@@ -1,6 +1,7 @@
 package org.api.catlibrary.services;
 
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.List;
 
 import org.api.catlibrary.data.BookDocument;
@@ -40,5 +41,23 @@ public class LibraryService {
 		Book book = new Book();
 		modelMapper.map(bookDoc, book);
 		return book;
+	}
+	
+	public boolean qualify(String id, boolean vote, String user) {
+		//check if there is a user
+		if (user.isEmpty() || user == null)
+			return false;
+		
+		//check if user already voted
+		
+		//give a vote to the book
+		BookDocument bookDoc = bookRepo.findOne(id);
+		HashMap<String, Boolean> votes = bookDoc.getVotes();
+		if (votes==null)
+			votes=new HashMap<String, Boolean>();
+		votes.put(user, vote);
+		bookDoc.setVotes(votes);
+		bookRepo.save(bookDoc);
+		return true;
 	}
 }
